@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="app.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Prizm калькулятор</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+</head>
+
+<body>
+<div id="calc">
+    <h1 style="text-align: center">Рассчет дохода криптовалюты Prizm</h1>
+    <div class="centrelement">
+        <label>
+            <select id="chooose" onchange="smena()">
+                <option value="0">Выберете тип:</option>
+                <option value="1">Доход</option>
+                <option value="2">Время</option>
+                <!--                <option value="3">Проценты</option>-->
+            </select>
+        </label>
+    </div>
+    <br>
+
+    <p style="text-align: center;">Доход - расчет дохода зная проценты, время и баланс</p>
+    <p style="text-align: center;">Время - расчет времени за которое наберется определенная сумма зная началбный баланс,
+        конечный результат и время</p>
+    <!--    <p>-->
+    <!--    Проценты - расчет процентов исходя из начального баланся, времени и окончательного баланса-->
+    <!--    </p>-->
+
+<!--    Доход-->
+    <div id="Dddooohhhoooddd">
+        <div class="centrelement">
+            Реинвест
+            <label class="switch" id="reinv">
+                <input type="checkbox" onclick="Reive()">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div id="reinve3">
+            <br>
+            <p style="text-align: center">Период реинвеста - раз в день</p>
+        </div>
+
+        <div class="centrelement">
+            <label>
+                <select id="chossse">
+                    <option value="0">Выберете тип:</option>
+                    <option value="1">Конечный баланс</option>
+                    <option value="2">Конечный доход</option>
+                </select>
+            </label>
+        </div>
+
+        <br>
+
+        <div class="centrelement">
+            <label for="balance"></label><input type="number" id="balance" value="" placeholder="Ваш баланс"
+                                                style="width: 110px">
+        </div>
+
+
+        <div class="centrelement">
+            <label for="percent"></label><input type="number" id="percent" value=""
+                                                placeholder="Ваш доход в день(в процентах)"
+                                                style="width: 250px">
+        </div>
+
+
+        <br>
+
+        <div class="centrelement">
+            <label for="time"></label><input type="number" id="time" value="" placeholder="Кол-во дней"
+                                             style="width: 110px">
+        </div>
+
+        <br>
+
+        <div class="centrelement">
+            <button id="time123" onclick="raschitat()">Рассчитать доход</button>
+                <div style="font-size: 150%" id="dohod"></div>
+        </div>
+    </div>
+
+
+<!--    Время-->
+    <div id="tttiiimmmeee">
+        <p style="text-align: center">Период реинвеста - раз в день</p>
+        <div class="centrelement">
+            <label for="balance111"></label><input type="number" id="balance111" value="" placeholder="Ваш нынешний баланс"
+                                                   style="width: 190px">
+        </div>
+
+
+        <br>
+
+        <div class="centrelement">
+            <label>
+                <select id="choooseee" onchange="smena2()">
+                    <option value="0">Выберете тип:</option>
+                    <option value="1">Желаемый баланс</option>
+                    <option value="2">Желаемый доход</option>
+                </select>
+            </label>
+        </div>
+
+
+        <div class="zelbal" id="zelbal">
+            <div class="centrelement">
+                <br>
+                <label for="zel"></label><input type="number" id="zel" value="" placeholder="Желаемый баланс"
+                                                style="width: 180px">
+            </div>
+        </div>
+
+        <div class="zeldohod" id="zeldohod">
+            <br>
+            <div class="centrelement">
+                <label for="zel2"></label><input type="number" id="zel2" value="" placeholder="Желаемый доход"
+                                                style="width: 180px">
+
+                <br>
+            </div>
+        </div>
+
+
+        <div class="centrelement">
+            <label for="percent0"></label><input type="number" id="percent0" value=""
+                                                 placeholder="Ваш доход в день(в процентах)"
+                                                 style="width: 250px">
+        </div>
+
+
+        <br>
+
+        <div class="centrelement">
+            <button id="timeees" onclick="raschitat2()">Рассчитать доход</button>
+        </div>
+
+        <div style="font-size: 150%; text-align: center" id="dohod11"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script>
+        var Dddooohhhoooddd = document.getElementById("Dddooohhhoooddd");
+        var tttiiimmmeee = document.getElementById("tttiiimmmeee");
+        var reive3 = document.getElementById("reinve3");
+        var zelbal = document.getElementById("zelbal");
+        var zeldohod = document.getElementById("zeldohod");
+        reive3.style.display = "none";
+        Dddooohhhoooddd.style.display = "none";
+        tttiiimmmeee.style.display = "none";
+        zelbal.style.display = "none";
+        zeldohod.style.display = "none";
+        let reinve = 0;
+
+        function Reive() {
+            if (reinve === 0) {
+                reive3.style.display = "block";
+                reinve = 1;
+            } else {
+                reive3.style.display = "none";
+                reinve = 0;
+            }
+        }
+
+        function raschitat() {
+            chose111 = document.getElementById("chossse").value;
+            if (chose111 == 1) {
+                if (reinve === 0) {
+                    balance = document.getElementById('balance').value;
+                    percent = document.getElementById('percent').value;
+                    time = document.getElementById('time').value;
+                    if (balance === "") {
+                        alert("Вы не указали баланс");
+                    } else if (percent === "") {
+                        alert("Вы не указали доход в день");
+                    } else if (time === "") {
+                        alert("Вы не указали время");
+                    } else {
+                        oneday = parseFloat(balance) / 100 * percent;
+                        dohod2 = oneday * parseFloat(time);
+                        dohod = parseFloat(dohod2) + parseFloat(balance);
+                        document.getElementById('dohod').innerHTML = "Конечный баланс равен: " + dohod + " pzm";
+                    }
+                } else if (reinve === 1) {
+                    balance = document.getElementById('balance').value;
+                    percent = document.getElementById('percent').value;
+                    time = document.getElementById('time').value;
+                    if (balance === "") {
+                        alert("Вы не указали баланс");
+                    } else if (percent === "") {
+                        alert("Вы не указали доход в день");
+                    } else if (time === "") {
+                        alert("Вы не указали время");
+                    } else {
+                        perday2 = Math.pow((1 + percent / 100), time);
+                        sum = parseFloat(balance) * perday2;
+                        dohod2 = sum - parseFloat(balance);
+                        dohod = parseFloat(dohod2) + parseFloat(balance);
+                        document.getElementById('dohod').innerHTML = "Конечный баланс равен: " + dohod + " pzm";
+                    }
+                }
+            } else if (chose111 == 3) {
+                if (reinve === 0) {
+                    balance = document.getElementById('balance').value;
+                    percent = document.getElementById('percent').value;
+                    time = document.getElementById('time').value;
+                    if (balance === "") {
+                        alert("Вы не указали баланс");
+                    } else if (percent === "") {
+                        alert("Вы не указали доход в день");
+                    } else if (time === "") {
+                        alert("Вы не указали время");
+                    } else {
+                        oneday = parseFloat(balance) / 100 * percent;
+                        dohod = oneday * parseFloat(time);
+                        document.getElementById('dohod').innerHTML = "Доход равен: " + dohod + " pzm";
+                    }
+                } else if (reinve === 1) {
+                    balance = document.getElementById('balance').value;
+                    percent = document.getElementById('percent').value;
+                    time = document.getElementById('time').value;
+                    if (balance === "") {
+                        alert("Вы не указали баланс");
+                    } else if (percent === "") {
+                        alert("Вы не указали доход в день");
+                    } else if (time === "") {
+                        alert("Вы не указали время");
+                    } else {
+                        perday2 = Math.pow((1 + percent / 100), time);
+                        sum = parseFloat(balance) * perday2;
+                        dohod = sum - parseFloat(balance);
+                        document.getElementById('dohod').innerHTML = "Доход равен: " + dohod + " pzm";
+                    }
+                }
+            }
+        }
+
+        function getBaseLog(x, y) {
+            return Math.log(y) / Math.log(x);
+        }
+
+        function raschitat2() {
+            let choose2 = document.getElementById('choooseee').value;
+            if (choose2 == 1) {
+                balance = document.getElementById('balance111').value;
+                zel = document.getElementById('zel').value;
+                percent = document.getElementById('percent0').value;
+                if (balance === "") {
+                    alert("Вы не указали нынешний баланс");
+                } else if (zel === "") {
+                    alert("Вы не указали желаемый баланс");
+                } else if (percent === "") {
+                    alert("Вы не указали доход в день");
+                } else {
+                    perday0001 = percent / 100;
+                    perday001 = 1 + perday0001;
+                    sum001 = zel / balance;
+                    document.getElementById('dohod11').innerHTML = "Время составит: " + getBaseLog(perday001, sum001) + " дней";
+                }
+            } else if (choose2 == 2) {
+                balance = document.getElementById('balance111').value;
+                zel1 = document.getElementById('zel2').value;
+                percent = document.getElementById('percent0').value;
+                if (balance === "") {
+                    alert("Вы не указали нынешний баланс");
+                } else if (zel === "") {
+                    alert("Вы не указали желаемый доход");
+                } else if (percent === "") {
+                    alert("Вы не указали доход в день");
+                } else {
+                    perday0001 = percent / 100;
+                    perday001 = 1 + perday0001;
+                    zel2 = parseFloat(balance) + parseFloat(zel1);
+                    sum001 = zel2 / balance;
+                    document.getElementById('dohod11').innerHTML = "Время составит: " + getBaseLog(perday001, sum001) + " дней";
+                }
+            }
+        }
+
+        function smena() {
+            let choose = document.getElementById('chooose').value;
+            if (choose === 0) {
+                Dddooohhhoooddd.style.display = "none";
+                tttiiimmmeee.style.display = "none";
+            } else if (choose == 1) {
+                Dddooohhhoooddd.style.display = "block";
+                tttiiimmmeee.style.display = "none";
+            } else if (choose == 2) {
+                Dddooohhhoooddd.style.display = "none";
+                tttiiimmmeee.style.display = "block";
+            }
+            // else if (document.getElementById('chooose').value === 3) {}
+        }
+
+        function smena2() {
+            let choose2 = document.getElementById('choooseee').value;
+            if (choose2 == 0) {
+                zelbal.style.display = "none";
+                zeldohod.style.display = "none";
+            } else if (choose2 == 1) {
+                zelbal.style.display = "block";
+                zeldohod.style.display = "none";
+            } else if (choose2 == 2) {
+                zelbal.style.display = "none";
+                zeldohod.style.display = "block";
+            }
+        }
+    </script>
+    <div class="centrelement">
+        <a style="font-size: 200%; text-decoration: none" href="prikolnyashki.html"><span>Назад</span></a>
+    </div>
+</div>
+</body>
+</html>
